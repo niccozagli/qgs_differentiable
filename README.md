@@ -81,6 +81,28 @@ docs/           project, model, and agent documentation
 - Validate every model layer against qgs or finite differences before using it
   in parameter recovery.
 
+## Running the Standard qgs Model
+
+Run a short smoke-test integration of the standard 36D MAOOAM configuration:
+
+```bash
+python scripts/run_standard_qgs.py
+```
+
+By default this writes:
+
+```text
+configs/qgs_standard_run.npz
+```
+
+Useful options:
+
+```bash
+python scripts/run_standard_qgs.py --print-params
+python scripts/run_standard_qgs.py --transient-time 3000 --integration-time 500
+python scripts/run_standard_qgs.py --output configs/my_qgs_run.npz
+```
+
 ## Next Steps
 
 1. Write a qgs export script for the fixed MAOOAM configuration.
