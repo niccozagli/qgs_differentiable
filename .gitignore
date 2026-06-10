@@ -35,6 +35,7 @@ configs/*.npz
 configs/*.npy
 configs/*.json
 configs/*.nc
+data/
 outputs/
 figures/
 

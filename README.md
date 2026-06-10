@@ -92,7 +92,7 @@ python scripts/run_standard_qgs.py
 By default this writes:
 
 ```text
-configs/qgs_standard_run.npz
+data/qgs_standard_run.npz
 ```
 
 Useful options:
@@ -100,7 +100,8 @@ Useful options:
 ```bash
 python scripts/run_standard_qgs.py --print-params
 python scripts/run_standard_qgs.py --transient-time 3000 --integration-time 500
-python scripts/run_standard_qgs.py --output configs/my_qgs_run.npz
+python scripts/run_standard_qgs.py --filename my_qgs_run.npz
+python scripts/run_standard_qgs.py --output-dir data/experiments --filename my_qgs_run.npz
 ```
 
 ## Next Steps
