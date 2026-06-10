@@ -1,0 +1,17 @@
+name: dqgs
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy
+  - scipy
+  - sympy
+  - matplotlib
+  - jupyterlab
+  - ipykernel
+  - pytest
+  - pip
+  - pip:
+      - jax
+      - jaxlib
+      - optax
