@@ -44,3 +44,6 @@ codex-tui.log
 
 # External dependencies cloned locally
 external/qgs/
+
+#VSCode
+.vscode
