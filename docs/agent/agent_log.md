@@ -14,3 +14,13 @@ Record major prompts, generated changes, and human corrections here.
   project dependency files.
 - 2026-06-10: Moved the standard qgs run output default to `data/` and split
   output naming into `--output-dir` and `--filename`.
+- 2026-06-10: Converted the generated symbolic tendency
+  (`configs/tendencies_nonfixed_params.py`) into a pure JAX module
+  `src/dqgs/tendency.py`. Verbatim transcription of all 36 `F[i]` expressions
+  into `tendency(U, params)` (mutation-free `jnp.stack`, dropped unused `t`,
+  jitted). Added `PARAMETER_NAMES` / `DEFAULT_PARAMS` (16 defaults read from a
+  qgs `model_parameters` object built per the config script — not hand-set) and
+  `make_tendency(free_names)` so only a chosen 1-3 parameter subset is exposed to
+  AD. Smoke check: matches the generated source to 2.7e-15 in float64.
+  Human correction: implement the code first, defer the validation suite to a
+  separate plan.
