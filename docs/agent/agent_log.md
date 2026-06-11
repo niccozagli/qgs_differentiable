@@ -24,3 +24,8 @@ Record major prompts, generated changes, and human corrections here.
   AD. Smoke check: matches the generated source to 2.7e-15 in float64.
   Human correction: implement the code first, defer the validation suite to a
   separate plan.
+- 2026-06-11: Reviewed the dqgs JAX tendency/RK4 commit against qgs. Fixed an
+  import-order precision bug by keeping `DEFAULT_PARAM_VECTOR` as a NumPy
+  float64 array until callers convert it under JAX x64. Added regression tests
+  for that import order and for matching the generated symbolic tendency at
+  perturbed parameter values.

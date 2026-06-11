@@ -9,6 +9,8 @@ round-off on a short window.
 import jax.numpy as jnp
 import numpy as np
 import pytest
+import subprocess
+import sys
 
 from dqgs import DEFAULT_PARAM_VECTOR, integrate, tendency
 from qgs.integrators.integrate import integrate_runge_kutta
@@ -71,3 +73,17 @@ def test_integrate_rejects_nonmultiple_write_steps(ic):
     """n_steps must be a multiple of write_steps."""
     with pytest.raises(ValueError):
         integrate(f_dqgs, jnp.asarray(ic), DT, 100, write_steps=7)
+
+
+def test_default_params_stay_float64_when_x64_enabled_after_import():
+    """Importing dqgs before enabling x64 must not freeze defaults as float32."""
+    code = """
+import jax
+import jax.numpy as jnp
+import dqgs
+
+assert str(dqgs.DEFAULT_PARAM_VECTOR.dtype) == "float64"
+jax.config.update("jax_enable_x64", True)
+assert jnp.asarray(dqgs.DEFAULT_PARAM_VECTOR).dtype == jnp.float64
+"""
+    subprocess.run([sys.executable, "-c", code], check=True)

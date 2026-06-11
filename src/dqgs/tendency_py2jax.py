@@ -41,6 +41,7 @@ from __future__ import annotations
 
 import jax
 import jax.numpy as jnp
+import numpy as np
 
 # Number of state variables (36-D MAOOAM, atmosphere 2-2 / ocean 2-4).
 STATE_DIM = 36
@@ -88,8 +89,12 @@ DEFAULT_PARAMS = {
 }
 
 # Default parameter vector, ordered exactly as PARAMETER_NAMES.
-DEFAULT_PARAM_VECTOR = jnp.array(
-    [DEFAULT_PARAMS[name] for name in PARAMETER_NAMES], dtype=jnp.float64
+#
+# Keep this as a NumPy float64 array instead of a JAX array. JAX downcasts
+# float64 arrays created before ``jax_enable_x64`` is enabled, and that import
+# order would permanently make the defaults float32 for later calls.
+DEFAULT_PARAM_VECTOR = np.array(
+    [DEFAULT_PARAMS[name] for name in PARAMETER_NAMES], dtype=np.float64
 )
 
 _PARAM_INDEX = {name: i for i, name in enumerate(PARAMETER_NAMES)}
